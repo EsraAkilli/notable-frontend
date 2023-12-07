@@ -1,7 +1,7 @@
 <template>
   <div>
     <section>
-      <form @submit.prevent="formSubmit" class="box">
+      <form class="box" @submit.prevent="formSubmit">
         <b-field label="Email">
           <b-input v-model="email" type="email" maxlength="30" />
         </b-field>
@@ -31,6 +31,7 @@ export default {
   methods: {
     formSubmit() {
       this.isLoading = true
+
       this.$http
         .post("login", {
           email: this.email,
