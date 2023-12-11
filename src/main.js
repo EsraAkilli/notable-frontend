@@ -6,6 +6,12 @@ import Buefy from "buefy"
 import axios from "axios"
 
 import "@/helpers/intercepters"
+import { defineComponent } from "vue"
+import UpdatePassword from "@/components/ChangePassword.vue"
+
+export default defineComponent({
+  components: { UpdatePassword }
+})
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
