@@ -53,9 +53,8 @@ rules:
     - 2
     - words: true
       nonwords: false
-      overrides:
-        '!': true
   indent:
     - error
     - 2
     - SwitchCase: 1
+  vue/html-self-closing: 0
