@@ -1,7 +1,7 @@
 <template>
   <div>
     <section>
-      <form @submit.prevent="formRegister" class="box">
+      <form class="box" @submit.prevent="submit">
         <b-field label="Name">
           <b-input v-model="name" type="text" maxlength="30" />
         </b-field>
@@ -32,7 +32,7 @@ export default {
     }
   },
   methods: {
-    formRegister() {
+    submit() {
       const data = {
         name: this.name,
         email: this.email,

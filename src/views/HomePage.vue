@@ -1,6 +1,6 @@
 <template>
   <div class="flex-container">
-    <p>Merhaba {{ name }}</p>
+    <p>Merhaba {{ name }} 🎉</p>
   </div>
 </template>
 
@@ -25,7 +25,16 @@ export default {
 <style>
 .flex-container {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+}
+
+.flex-container p {
+  font-size: 24px;
+  padding: 20px;
+  color: #403e47;
+  margin-bottom: 20px;
 }
 </style>

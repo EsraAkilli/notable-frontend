@@ -11,3 +11,14 @@ export default {
   name: "Footer"
 }
 </script>
+
+<style scoped>
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #cdc7e5;
+  padding: 15px;
+  text-align: center;
+}
+</style>

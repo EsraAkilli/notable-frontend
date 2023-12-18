@@ -99,7 +99,7 @@ export default {
 .user-page {
   max-width: 600px;
   padding: 20px;
-
   margin: auto auto 20px;
+  height: 100vh;
 }
 </style>
