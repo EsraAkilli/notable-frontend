@@ -8,23 +8,25 @@
         <p>You have not any notes yet.</p>
       </div>
 
-      <div v-for="note in notes" :key="note.id">
-        <div class="card mb-5">
-          <header class="card-header">
-            <p class="card-header-title">{{ note.title }}</p>
-          </header>
+      <div v-else class="section">
+        <div v-for="note in notes" :key="note.id">
+          <div class="card mb-5">
+            <header class="card-header">
+              <p class="card-header-title">{{ note.title }}</p>
+            </header>
 
-          <div class="card-content">
-            <div class="content">
-              {{ note.content }}
-              <br />
+            <div class="card-content">
+              <div class="content">
+                {{ note.content }}
+                <br />
+              </div>
             </div>
-          </div>
 
-          <footer class="card-footer">
-            <b-button type="is-succes" class="card-footer-item" @click="openEditModal(note.id)">Edit</b-button>
-            <b-button type="is-succes" class="card-footer-item" @click="openDeleteModal(note.id)">Delete</b-button>
-          </footer>
+            <footer class="card-footer">
+              <b-button type="is-succes" class="card-footer-item" @click="openEditModal(note.id)">Edit</b-button>
+              <b-button type="is-succes" class="card-footer-item" @click="openDeleteModal(note.id)">Delete</b-button>
+            </footer>
+          </div>
         </div>
       </div>
     </section>
@@ -110,3 +112,18 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  overflow-x: auto;
+}
+.card {
+  width: 200px;
+  height: 150px;
+}
+</style>
