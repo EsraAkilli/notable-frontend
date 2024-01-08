@@ -23,10 +23,10 @@
       <template #end>
         <b-navbar-item tag="div">
           <div class="buttons">
-            <a class="button is-primary">
+            <router-link :to="{ name: 'register' }" class="button is-primary">
               <strong>Sign up</strong>
-            </a>
-            <a class="button is-light"> Log in </a>
+            </router-link>
+            <router-link :to="{ name: 'login' }" class="button is-light"> Log in </router-link>
           </div>
         </b-navbar-item>
       </template>
