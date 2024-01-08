@@ -8,31 +8,48 @@
         <p>You have not any notes yet.</p>
       </div>
 
-      <div v-else>
-        <ul>
-          <li v-for="note in notes" :key="note.id">
-            <div class="card mb-5">
-              <header class="card-header">
-                <p class="card-header-title">{{ note.title }}</p>
-              </header>
+      <div v-for="note in notes" :key="note.id">
+        <div class="card mb-5">
+          <header class="card-header">
+            <p class="card-header-title">{{ note.title }}</p>
+          </header>
 
-              <div class="card-content">
-                <div class="content">
-                  {{ note.content }}
-                  <br />
-                </div>
-              </div>
-
-              <footer class="card-footer">
-                <a href="#" class="card-footer-item">Save</a>
-                <a href="#" class="card-footer-item">Edit</a>
-                <a href="#" class="card-footer-item">Delete</a>
-              </footer>
+          <div class="card-content">
+            <div class="content">
+              {{ note.content }}
+              <br />
             </div>
-          </li>
-        </ul>
+          </div>
+
+          <footer class="card-footer">
+            <b-button type="is-succes" class="card-footer-item" @click="openEditModal(note.id)">Edit</b-button>
+            <b-button type="is-succes" class="card-footer-item" @click="openDeleteModal(note.id)">Delete</b-button>
+          </footer>
+        </div>
       </div>
     </section>
+
+    <b-modal
+      :active.sync="isEditModal"
+      trap-focus
+      aria-role="dialog"
+      aria-label="Update"
+      close-button-aria-label="Close"
+    >
+      <note-form :id="editNoteId" @updateNote="getList" />
+    </b-modal>
+
+    <b-modal
+      :active.sync="isDeleteModal"
+      trap-focus
+      aria-role="dialog"
+      aria-label="Delete Confirmation"
+      close-button-aria-label="Close"
+    >
+      <p>Are you sure you want to delete this note?</p>
+      <b-button @click="deleteNote">Delete</b-button>
+      <b-button class="ml-2" @click="closeDeleteModal">Cancel</b-button>
+    </b-modal>
   </div>
 </template>
 
@@ -44,8 +61,11 @@ export default {
   components: { NoteForm },
   data() {
     return {
+      editNoteId: null,
       data: null,
-      notes: []
+      notes: [],
+      isEditModal: false,
+      isDeleteModal: false
     }
   },
   mounted() {
@@ -53,6 +73,8 @@ export default {
   },
   methods: {
     getList() {
+      this.isEditModal = false
+
       this.$http
         .get("note/list")
         .then(({ data: { data } }) => {
@@ -68,6 +90,22 @@ export default {
             type: "is-danger"
           })
         })
+    },
+    openEditModal(noteId) {
+      this.editNoteId = noteId
+      this.isEditModal = true
+    },
+    openDeleteModal(noteId) {
+      this.isDeleteModal = true
+      this.editNoteId = noteId
+    },
+    closeDeleteModal() {
+      this.isDeleteModal = false
+      this.editNoteId = null
+    },
+    deleteNote() {
+      this.isDeleteModal = false
+      this.editNoteId = null
     }
   }
 }
