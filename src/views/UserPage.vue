@@ -11,7 +11,8 @@
     </b-field>
 
     <b-button type="is-info" :loading="isLoading" @click="updateProfile">Update</b-button>
-    <b-button type="is-succes" class="ml-2" @click="openChangePasswordModal">Change Password</b-button>
+    <b-button type="is-success" class="ml-2" @click="openChangePasswordModal">Change Password</b-button>
+    <b-button type="is-danger" class="ml-2" @click="logout">Logout</b-button>
 
     <b-modal
       :active.sync="isChangePasswordModal"
@@ -90,6 +91,21 @@ export default {
     },
     closeModalChangePassword() {
       this.isChangePasswordModal = false
+    },
+    logout() {
+      this.$http
+        .post("user/logout")
+        .then(() => {
+          this.$router.push({ name: "login" })
+        })
+        .catch((error) => {
+          console.log(error)
+          this.$buefy.toast.open({
+            message: "Failed to logout",
+            position: "is-bottom",
+            type: "is-danger"
+          })
+        })
     }
   }
 }
@@ -101,5 +117,11 @@ export default {
   padding: 20px;
   margin: auto auto 20px;
   height: 100vh;
+}
+.user-page h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #7957d5;
+  margin-bottom: 20px;
 }
 </style>

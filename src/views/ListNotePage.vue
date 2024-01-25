@@ -48,8 +48,8 @@
       aria-label="Delete Confirmation"
       close-button-aria-label="Close"
     >
-      <p>Are you sure you want to delete this note?</p>
-      <b-button @click="deleteNote">Delete</b-button>
+      <p>Are you sure you want to delete this note? <i class="fas fa-trash-alt"></i></p>
+      <b-button type="is-danger" @click="deleteNote">Delete</b-button>
       <b-button class="ml-2" @click="closeDeleteModal">Cancel</b-button>
     </b-modal>
   </div>
