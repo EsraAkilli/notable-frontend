@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="content has-text-centered">
-      <p><strong>NotHub</strong> by <a>EA</a>.</p>
+      <p><strong>NoteTalks</strong> by <a>EA</a>.</p>
     </div>
   </footer>
 </template>

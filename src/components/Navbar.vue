@@ -12,7 +12,6 @@
 
       <template #start>
         <b-navbar-item tag="router-link" :to="{ name: 'home' }"> Home </b-navbar-item>
-        <b-navbar-item tag="router-link" :to="{ name: 'list' }"> My Notes </b-navbar-item>
         <b-navbar-dropdown label="User">
           <b-navbar-item tag="router-link" :to="{ name: 'me' }"> My Page </b-navbar-item>
           <b-navbar-item tag="router-link" :to="{ name: 'list' }"> My Notes </b-navbar-item>

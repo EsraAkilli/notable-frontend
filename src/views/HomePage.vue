@@ -1,36 +1,26 @@
 <template>
   <div class="flex-container">
-    <p>Merhaba {{ name }} 🎉</p>
+    <p>Merhaba {{ userFullName }} 🎉</p>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex"
+
 export default {
   name: "HomePage",
-  data() {
-    return {
-      name: null
-    }
+  computed: {
+    ...mapState(["userFullName"])
   },
   mounted() {
     this.$nextTick(function () {
-      this.$http.get("/user/me").then((response) => {
-        this.name = response.data.name
-      })
+      this.$store.dispatch("userMe")
     })
   }
 }
 </script>
 
 <style>
-.flex-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100vh;
-}
-
 .flex-container p {
   font-size: 24px;
   padding: 20px;
