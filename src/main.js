@@ -18,6 +18,17 @@ Vue.config.productionTip = false
 Vue.prototype.$http = axios
 
 Vue.use(Buefy)
+router.beforeEach(async (to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (store.getters.isLoggedIn) {
+      next()
+      return
+    }
+    next("/login")
+  } else {
+    next()
+  }
+})
 
 new Vue({
   router,

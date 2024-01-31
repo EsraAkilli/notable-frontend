@@ -24,17 +24,20 @@ const routes = [
   {
     path: "/user/me",
     name: "me",
-    component: UserPage
+    component: UserPage,
+    meta: { requiresAuth: true }
   },
   {
     path: "/note/create",
     name: "create",
-    component: NoteForm
+    component: NoteForm,
+    meta: { requiresAuth: true }
   },
   {
     path: "/note/list",
     name: "list",
-    component: ListNotePage
+    component: ListNotePage,
+    meta: { requiresAuth: true }
   }
 ]
 
