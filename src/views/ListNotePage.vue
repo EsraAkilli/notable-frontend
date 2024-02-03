@@ -82,9 +82,7 @@ export default {
         .then(({ data: { data } }) => {
           this.notes = data
         })
-        .catch((error) => {
-          console.log(error)
-
+        .catch(() => {
           this.$buefy.toast.open({
             duration: 5000,
             message: "Something went wrong.",

@@ -1,7 +1,7 @@
 <template>
   <div>
     <section>
-      <form class="box" @submit.prevent="formSubmit">
+      <form v-if="showLoginForm" class="box" @submit.prevent="formSubmit">
         <b-field label="Email">
           <b-input v-model="email" type="email" maxlength="30" />
         </b-field>
@@ -25,8 +25,19 @@ export default {
     return {
       email: null,
       password: null,
-      isLoading: false
+      isLoading: false,
+      showLoginForm: false
     }
+  },
+  mounted() {
+    this.$store
+      .dispatch("userMe")
+      .then(() => {
+        router.push({ name: "home" })
+      })
+      .catch(() => {
+        this.showLoginForm = true
+      })
   },
   methods: {
     formSubmit() {
@@ -40,7 +51,7 @@ export default {
         .then((response) => {
           localStorage.setItem("accessToken", response.data.access_token)
 
-          this.$buefy.notification.open({
+          this.$buefy.toast.open({
             message: "Submitted!",
             type: "is-success"
           })

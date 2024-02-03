@@ -42,19 +42,10 @@ export default {
     }
   },
   mounted() {
-    this.$http
-      .get("user/me")
-      .then((response) => {
-        this.name = response.data.name
-        this.email = response.data.email
-      })
-      .catch((error) => {
-        console.log(error)
-        this.$buefy.toast.open({
-          message: "Something went wrong.",
-          type: "is-danger"
-        })
-      })
+    this.$http.get("user/me").then((response) => {
+      this.name = response.data.name
+      this.email = response.data.email
+    })
   },
   methods: {
     updateProfile() {
@@ -94,7 +85,7 @@ export default {
     },
     logout() {
       this.$http
-        .post("user/logout")
+        .get("user/logout")
         .then(() => {
           this.$router.push({ name: "login" })
         })

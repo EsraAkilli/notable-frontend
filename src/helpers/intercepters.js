@@ -1,6 +1,7 @@
 import axios from "axios"
 import { ToastProgrammatic as Toast } from "buefy"
 import { flattenDeep, uniq, values } from "lodash"
+import store from "@/store"
 
 axios.defaults.baseURL = "http://notable.test/api/"
 
@@ -22,6 +23,14 @@ axios.interceptors.response.use(
   },
   function (error) {
     if (error.response) {
+      console.log("axios hata => ", error)
+
+      if (error.response.status === 401) {
+        store.commit("logout", { toLogin: true, withMessage: false })
+
+        return
+      }
+
       if (error.response.status === 422) {
         let errors = parseError(error.response)
 
@@ -31,6 +40,8 @@ axios.interceptors.response.use(
           duration: 5000
         })
       }
+
+      console.log("test FA", error)
 
       return Promise.reject(error.response)
     }
